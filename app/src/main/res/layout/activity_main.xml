@@ -7,14 +7,33 @@
     android:layout_height="match_parent"
     tools:context="com.example.vinzee.andriodfragmentexample.MainActivity">
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="16dip"
-        tools:layout_editor_absoluteY="16dip"
-        android:orientation="vertical">
-    </FrameLayout>
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="200dip"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
+
+        <fragment
+            android:name="com.example.vinzee.andriodfragmentexample.Fragment1"
+            android:id="@+id/fragment1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <fragment
+            android:name="com.example.vinzee.andriodfragmentexample.Fragment2"
+            android:id="@+id/fragment2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

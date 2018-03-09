@@ -58,31 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        fragmentTransaction.replace(R.id.root_layout, fragment);
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
     }
-//
-//    private void PushFragment(Fragment2 fragment){
-//        if (fragment == null) return;
-//
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//
-//        if (fragmentManager == null) return;
-//
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//
-//        fragmentTransaction.replace(R.id.root_layout, fragment);
-//    }
-//
-//    private void PushFragment(Fragment3 fragment){
-//        if (fragment == null) return;
-//
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//
-//        if (fragmentManager == null) return;
-//
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//
-//        fragmentTransaction.replace(R.id.root_layout, fragment);
-//    }
 }
