@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Fragment1.Communication {
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -18,16 +18,18 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
             Log.d("MainActivity", "selected: " + item.getItemId());
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    PushFragment(new Fragment1());
+                    PushFragment(new Fragment1(), "fragment1");
                     return true;
                 case R.id.navigation_dashboard:
-                    PushFragment(new Fragment2());
+                    PushFragment(new Fragment2(), "fragment2");
                     return true;
                 case R.id.navigation_notifications:
-                    PushFragment(new Fragment3());
+                    PushFragment(new Fragment3(), "fragment3");
                     return true;
             }
             return false;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
-    private void PushFragment(Fragment fragment){
+    private void PushFragment(Fragment fragment, String fragmentTag){
         if (fragment == null){
             Log.d("PushFragment", "fragment is null");
             return;
@@ -58,7 +60,23 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.replace(R.id.fragment_container, fragment, fragmentTag);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public String foo() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        if (fragmentManager == null){
+            Log.d("foo", "fragmentManager is null");
+        } else {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Fragment2 fragment2 = (Fragment2) fragmentManager.findFragmentByTag("fragment2");
+            fragment2.bar("Hello Fragment");
+            fragmentTransaction.commit();
+        }
+
+        return "Hello from Main activity";
     }
 }
